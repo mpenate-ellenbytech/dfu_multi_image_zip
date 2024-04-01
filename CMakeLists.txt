@@ -32,8 +32,8 @@ function(dfu_multi_image_zip)
     endif()
   endif()
 
-  add_custom_target(
-    ${GENZIP_TARGET} ALL
+  add_custom_command(
+    OUTPUT ${GENZIP_OUTPUT}
     COMMAND
     ${PYTHON_EXECUTABLE}
     ${ZEPHYR_NRF_MODULE_DIR}/scripts/bootloader/generate_zip.py
@@ -46,6 +46,12 @@ function(dfu_multi_image_zip)
     "board=${CONFIG_BOARD}"
     "soc=${CONFIG_SOC}"
     DEPENDS ${GENZIP_DEPENDS}
+    )
+
+  add_custom_target(
+    ${GENZIP_TARGET}
+    ALL
+    DEPENDS ${GENZIP_OUTPUT}
     )
 endfunction()
 
