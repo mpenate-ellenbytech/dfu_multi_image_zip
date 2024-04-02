@@ -55,10 +55,10 @@ function(dfu_multi_image_zip)
     )
 endfunction()
 
-function(${SYSBUILD_CURRENT_MODULE_NAME}_post_domains)
-  cmake_parse_arguments(POST_DOMAINS "" "" "IMAGES" ${ARGN})
+function(${SYSBUILD_CURRENT_MODULE_NAME}_post_cmake)
+  cmake_parse_arguments(POST_CMAKE "" "" "IMAGES" ${ARGN})
 
-  message("Invoking ${CMAKE_CURRENT_FUNCTION}. Images: ${POST_DOMAINS_IMAGES}.")
+  message("Invoking ${CMAKE_CURRENT_FUNCTION}. Images: ${POST_CMAKE_IMAGES}.")
 
   if(SB_CONFIG_DFU_MULTI_IMAGE_PACKAGE_BUILD)
     include(${ZEPHYR_BASE}/../nrf/cmake/fw_zip.cmake)
